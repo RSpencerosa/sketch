@@ -1,15 +1,16 @@
 
 const btn = document.querySelector("button")
 const container = document.querySelector("#container")
+const gridWidth = document.body.clientWidth
 
 btn.addEventListener("click", function() {
     let input = prompt("New size?")
     Number(input)
-    if (input > 0 && input < 100) {
+    if (input >= 2 && input <= 100) {
         remove()
         reset(input)
     } else {
-        alert("Error! Please type one number below 100!")
+        alert("Error! Please type one number between 2 and 100!")
     }
 })
 
@@ -22,7 +23,12 @@ function reset(number) {
     for (i = 0; i < number*number; i++) {
         const square = document.createElement("div")
         square.classList.add("square")
-        square.addEventListener("mouseover",()=>square.style.cssText="background: black")
+        const temp = Math.floor(gridWidth/number)
+        const size = temp.toString() + "px"
+        square.style.height = size
+        square.style.width = size
+        square.addEventListener("mouseover",()=>
+            square.style.cssText="background: black;height:"+size+";width:"+size)
         container.appendChild(square)
     }
 }
