@@ -27,4 +27,4 @@ function reset(number) {
     }
 }
 
-reset(255)
+reset(16)
